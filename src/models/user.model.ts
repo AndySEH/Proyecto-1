@@ -51,7 +51,7 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-// Middleware para hashear la contraseña antes de guardar
+
 userSchema.pre('save', async function (next) {
   const user = this;
   if (!user.isModified('password')) return next();
@@ -64,7 +64,7 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-// Método para comparar contraseñas
+// comparar contraseñas
 userSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
   try {
     return await argon2.verify(this.password, candidatePassword);
@@ -73,7 +73,7 @@ userSchema.methods.comparePassword = async function (candidatePassword: string):
   }
 };
 
-// Método para verificar permisos individuales
+// verificar permisos individuales
 userSchema.methods.hasPermission = function (permission: keyof IUser['permissions']): boolean {
   return this.permissions[permission] || false;
 };

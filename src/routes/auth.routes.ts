@@ -7,7 +7,7 @@ async function Register(req: Request, res: Response) {
   try {
     const { name, email, password } = req.body;
     const user = await registerController({ name, email, password });
-    res.status(201).json({ message: 'User registered successfully', user });
+    res.status(201).json({ message: 'User registrado exitosamente', user });
   } catch (error) {
     const errorMessage = error as Error;
     res.status(400).json({ message: errorMessage.message });

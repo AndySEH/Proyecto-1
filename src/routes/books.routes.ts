@@ -24,7 +24,7 @@ async function CreateBook(req: AuthRequest, res: Response) {
         const book = await createBookController(req.body);
         res.status(201).json(book);
     } catch (error) {
-        res.status(500).json({ message: 'Failed to create book', error });
+        res.status(500).json({ message: 'No se pudo crear el libro', error });
     }
 }
 
@@ -34,12 +34,12 @@ async function UpdateBook(req: AuthRequest, res: Response) {
         const book = await updateBookController(bookId, req.body);
 
         if (!book) {
-            return res.status(404).json({ message: 'Book not found' });
+            return res.status(404).json({ message: 'Libro no encontrado' });
         }
 
         res.status(200).json(book);
     } catch (error) {
-        res.status(500).json({ message: 'Failed to update book', error });
+        res.status(500).json({ message: 'No se pudo actualizar el libro', error });
     }
 }
 
@@ -49,12 +49,12 @@ async function DeleteBook(req: AuthRequest, res: Response) {
         const book = await deleteBookController(bookId);
 
         if (!book) {
-            return res.status(404).json({ message: 'Book not found' });
+            return res.status(404).json({ message: 'Libro no encontrado' });
         }
 
-        res.status(200).json({ message: 'Book deleted successfully' });
+        res.status(200).json({ message: 'Libro eliminado exitosamente' });
     } catch (error) {
-        res.status(500).json({ message: 'Failed to delete book', error });
+        res.status(500).json({ message: 'No se pudo eliminar el libro', error });
     }
 }
 
@@ -64,7 +64,7 @@ async function GetBook(req: Request, res: Response, next: NextFunction) {
         const book = await getBookController(bookId);
 
         if (!book) {
-            return res.status(404).json({ message: 'Book not found' });
+            return res.status(404).json({ message: 'Libro no encontrado' });
         }
 
         res.status(200).json(book);
@@ -97,18 +97,18 @@ async function ReserveBook(req: AuthRequest, res: Response) {
         const userId = req.user?.id;
 
         if (!userId) {
-            return res.status(400).json({ message: 'User ID is missing' });
+            return res.status(400).json({ message: 'User ID no encontrado' });
         }
 
         const book = await reserveBookController(bookId, userId);
 
         if (!book) {
-            return res.status(404).json({ message: 'Book not found or already reserved' });
+            return res.status(404).json({ message: 'Libro no encontrado o reservado' });
         }
 
-        res.status(200).json({ message: 'Book reserved successfully', book });
+        res.status(200).json({ message: 'Libro reservado exitosamente', book });
     } catch (error) {
-        res.status(500).json({ message: 'Failed to reserve book', error });
+        res.status(500).json({ message: 'No se pudo reservar el libro', error });
     }
 }
 
