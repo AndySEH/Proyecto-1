@@ -14,7 +14,7 @@ Sistema de biblioteca virtual en donde los usuarios pueden hacer diferentes func
 ## Si se desea ejecutar el proyecto:
 
    ```bash
-   git clone 
+   git clone https://github.com/AndySEH/Proyecto-1.git
    ```
    ```bash
    npm install
